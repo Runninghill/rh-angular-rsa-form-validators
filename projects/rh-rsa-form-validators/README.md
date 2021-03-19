@@ -1,24 +1,21 @@
-# RhRsaFormValidators
+# Angular South African Form Validators
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.4.
+A set of South African specific validators for Angular forms.
 
-## Code scaffolding
+TODO: Add the Runninghill and Angular logos as well as some emojis
 
-Run `ng generate component component-name --project rh-rsa-form-validators` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project rh-rsa-form-validators`.
-> Note: Don't forget to add `--project rh-rsa-form-validators` or else it will be added to the default project in your `angular.json` file. 
+# Getting Started
 
-## Build
+If you plan on contributing to the package please read the contributor readme.
 
-Run `ng build rh-rsa-form-validators` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Run `npm install rh-angular-rsa-form-validators` in your Angular project.
 
-## Publishing
+2. Import and use the exposed classes to validate your Angular form controls.
 
-After building your library with `ng build rh-rsa-form-validators`, go to the dist folder `cd dist/rh-rsa-form-validators` and run `npm publish`.
+# Usage
 
-## Running unit tests
+TODO: Fill out usage section
 
-Run `ng test rh-rsa-form-validators` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# API Reference
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+TODO: Fill out api reference section
