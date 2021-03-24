@@ -9,6 +9,7 @@
     "lint": "ng lint"
   },
   "private": true,
+  "readme": "CONTRIBUTOR_README",
   "dependencies": {
     "@angular/animations": "~10.2.0",
     "@angular/common": "~10.2.0",
