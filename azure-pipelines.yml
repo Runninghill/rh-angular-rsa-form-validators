@@ -37,9 +37,9 @@ steps:
     customCommand: 'run build'
   displayName: 'Build package'
 
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'publish --access public'
-    customEndpoint: 'npm_runninghill'
-  displayName: 'Publish to npmjs.org'
+#- task: Npm@1
+#  inputs:
+#    command: 'custom'
+#    customCommand: 'publish --access public'
+#    customEndpoint: 'npm_runninghill'
+#  displayName: 'Publish to npmjs.org'
