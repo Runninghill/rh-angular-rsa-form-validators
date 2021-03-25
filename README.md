@@ -2,6 +2,10 @@
 
 # Angular South African Form Validators
 
+> Please note that this is the README for contributors, if you
+> need instructions on how to consume this package, please take a
+> look [here](https://github.com/Runninghill/rh-angular-rsa-form-validators/blob/main/projects/rh-rsa-form-validators/README.md).
+
 A set of South African specific validators for Angular forms.
 
 # Getting Started🏁
