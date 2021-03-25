@@ -1,10 +1,10 @@
+![Runninghill Logo](../../docs/runninghill.png "Runninghill")
+
 # Angular South African Form Validators
 
 A set of South African specific validators for Angular forms.
 
-TODO: Add the Runninghill and Angular logos as well as some emojis
-
-# Getting Started
+# Getting Started🏁
 
 If you plan on contributing to the package please read the contributor readme.
 
@@ -12,10 +12,57 @@ If you plan on contributing to the package please read the contributor readme.
 
 2. Import and use the exposed classes to validate your Angular form controls.
 
-# Usage
+# Usage💡
 
-TODO: Fill out usage section
+To begin validating your South African specific form fields, start by importing
+the _RsaFormValidators_ class.
 
-# API Reference
+```Javascript
+import { RsaFormValidator } from 'rh-angular-rsa-form-validators'
+```
 
-TODO: Fill out api reference section
+Add the appropriate validator to your form control(s).
+
+```Javascript
+// When creating your form
+this.form = this.formBuilder.group({
+    name: ['', Validators.required],
+    mobileNumber: ['', [Validators.required, RsaFormValidator.phoneNumber(false, true)]],
+    workNumber: ['']
+})
+
+// After the form is already created
+this.form.controls['workNumber'].setValidators([RsaFormValidators.phoneNumber(false, true)])
+```
+
+To determine if the form control passed the validation, check the errors object on the form control.
+
+RsaFormValidator error objects on form controls will always be the name of the validator, 
+prefixed with 'rsa' eg; for the rsa phone number validator, the error object is `rsaPhoneNumber`
+(rsa + phoneNumber = rsaPhoneNumber) 
+
+```Javascript
+if (this.form.controls['mobileNumber'].errors.rsaPhoneNumber)
+    errorMessage = 'Mobile number must be a valid South African phone number.'
+```
+
+# API Reference📖
+
+### RsaFormValidator
+
+Contains form control validators used to validate South African specific form fields.
+
+[_source code_](https://github.com/Runninghill/rh-angular-rsa-form-validators/blob/main/projects/rh-rsa-form-validators/src/lib/validators/rsa-form-validator.ts)
+
+#### Methods
+
+##### phoneNumber(allowCountryCode, allowSpaces)
+
+Returns a validator which determines if a form control is a valid South African phone number.
+
+Parameters
+
+|Name|Type|Description|Default|
+|----|----|-----------|-------|
+|allowCountryCode|boolean|determines if the phone number is allowed to contain the South African country code (+27)|true|
+|allowSpaces|boolean|determines if a phone number is allowed to contain spaces|true|
