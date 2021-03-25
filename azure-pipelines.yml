@@ -10,10 +10,36 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: Npm@1
+  inputs:
+    workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
+    command: 'install'
+  displayName: 'Install dependencies'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Npm@1
+  inputs:
+    workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
+    command: 'custom'
+    customCommand: 'run lint'
+  displayName: 'Run eslint checks'
+
+- task: Npm@1
+  inputs:
+    workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
+    command: 'custom'
+    customCommand: 'run test'
+  displayName: 'Run unit tests'
+
+- task: Npm@1
+  inputs:
+    workingDir: $(System.DefaultWorkingDirectory)
+    command: 'custom'
+    customCommand: 'run build'
+  displayName: 'Build package'
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'publish --access public'
+    customEndpoint: 'npm_runninghill'
+  displayName: 'Publish to npmjs.org'
