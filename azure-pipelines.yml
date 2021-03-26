@@ -41,14 +41,16 @@ steps:
 
 - task: Npm@1
   inputs:
-    workingDir: $(System.DefaultWorkingDirectory)
+    workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
     command: 'custom'
-    customCommand: 'run build'
+    customCommand: 'ng build --prod'
   displayName: 'Build package'
+
+- script: cd ./dist/rh-rsa-form-validators
+  displayName: 'Change directory to compiled package'
 
 - task: Npm@1
   inputs:
-    workingDirectory: $(System.DefaultWorkingDirectory)/dist/rh-rsa-form-validators
     command: 'custom'
     customCommand: 'publish --access public'
     customEndpoint: 'npm_runninghill'
