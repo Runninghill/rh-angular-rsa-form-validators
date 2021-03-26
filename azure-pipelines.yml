@@ -43,7 +43,7 @@ steps:
   inputs:
     workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
     command: 'custom'
-    customCommand: 'ng build --prod'
+    customCommand: 'run build'
   displayName: 'Build package'
 
 - script: cd ./dist/rh-rsa-form-validators

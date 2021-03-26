@@ -4,7 +4,8 @@
   "description": "A set of South African specific validators for Angular forms.",
   "scripts": {
     "lint": "eslint ./ --ext .ts",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "build": "ng build --prod"
   },
   "repository": {
     "type": "git",
