@@ -1,6 +1,7 @@
 {
   "name": "rh-angular-rsa-form-validators",
   "version": "0.0.0",
+  "private": true,
   "dependencies": {
     "@angular/common": "~10.2.0",
     "@angular/compiler": "~10.2.0",

@@ -52,11 +52,9 @@ steps:
     customCommand: 'run build'
   displayName: 'Build package'
 
-- script: cd ./dist/rh-rsa-form-validators
-  displayName: 'Change directory to compiled package'
-
 - task: Npm@1
   inputs:
+    workingDir: $(System.DefaultWorkingDirectory)/dist/rh-rsa-form-validators
     command: 'custom'
     customCommand: 'publish --access public'
     customEndpoint: 'npm_runninghill'
