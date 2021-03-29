@@ -23,7 +23,7 @@ steps:
   inputs:
     workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
     command: 'install'
-  displayName: 'Install dependencies'
+  displayName: 'Install package dependencies'
 
 - task: Npm@1
   inputs:
@@ -38,6 +38,12 @@ steps:
     command: 'custom'
     customCommand: 'run test'
   displayName: 'Run unit tests'
+
+- task: Npm@1
+  inputs:
+    workingDir: $(System.DefaultWorkingDirectory)
+    command: 'install'
+  displayName: 'Install workspace dependencies'
 
 - task: Npm@1
   inputs:
