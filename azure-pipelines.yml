@@ -14,35 +14,35 @@ stages:
     displayName: PR Test Stage
     jobs:
       - job: PR_Test
-      condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
-      steps:
-        - task: NodeTool@0
-          inputs:
-            versionSpec: '14.16.x'
-          displayName: 'Install Node.js'
+        condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '14.16.x'
+            displayName: 'Install Node.js'
 
-        - script: npm install -g @angular/cli
-          displayName: 'Install Angular CLI'
+          - script: npm install -g @angular/cli
+            displayName: 'Install Angular CLI'
 
-        - task: Npm@1
-          inputs:
-            workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
-            command: 'install'
-          displayName: 'Install package dependencies'
+          - task: Npm@1
+            inputs:
+              workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
+              command: 'install'
+            displayName: 'Install package dependencies'
 
-        - task: Npm@1
-          inputs:
-            workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
-            command: 'custom'
-            customCommand: 'run lint'
-          displayName: 'Run eslint checks'
+          - task: Npm@1
+            inputs:
+              workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
+              command: 'custom'
+              customCommand: 'run lint'
+            displayName: 'Run eslint checks'
 
-        - task: Npm@1
-          inputs:
-            workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
-            command: 'custom'
-            customCommand: 'run test'
-          displayName: 'Run unit tests'
+          - task: Npm@1
+            inputs:
+              workingDir: $(System.DefaultWorkingDirectory)/projects/rh-rsa-form-validators
+              command: 'custom'
+              customCommand: 'run test'
+            displayName: 'Run unit tests'
 
 
   - stage: Publish
