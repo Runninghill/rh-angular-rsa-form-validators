@@ -1,6 +1,10 @@
-![Runninghill Logo](./docs/runninghill.png "Runninghill")
+![Runninghill Logo](https://github.com/Runninghill/rh-angular-rsa-form-validators/blob/67badb0d7a78dca5c7ccacb729bbb3e5b0c5f8db/docs/runninghill.png?raw=true "Runninghill")
 
 # Angular South African Form Validators
+
+> Please note that this is the README for contributors, if you
+> need instructions on how to consume this package, please take a
+> look [here](https://github.com/Runninghill/rh-angular-rsa-form-validators/blob/main/projects/rh-rsa-form-validators/README.md).
 
 A set of South African specific validators for Angular forms.
 
