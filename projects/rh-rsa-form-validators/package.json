@@ -33,7 +33,8 @@
     "@angular/common": "^10.2.4",
     "@angular/core": "^10.2.4",
     "@angular/forms": "~10.2.0",
-    "rxjs": "~6.6.0"
+    "rxjs": "~6.6.0",
+    "sinon": "~9.2.4"
   },
   "keywords": [
     "angular",
