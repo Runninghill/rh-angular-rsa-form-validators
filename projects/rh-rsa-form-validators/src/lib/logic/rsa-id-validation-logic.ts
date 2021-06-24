@@ -47,10 +47,9 @@ export class RsaIdValidationLogic {
   static determineDateOfBirth(idNumber: string): Date {
     let dateOfBirthYear = idNumber.substring(0, 2)
     const currentYear = new Date().getFullYear().toString().substring(2, 4)
-    if (Number(dateOfBirthYear) <= Number(currentYear))
-      dateOfBirthYear = '20' + dateOfBirthYear
+    dateOfBirthYear = Number(dateOfBirthYear) <= Number(currentYear) ? '20' : '19' + dateOfBirthYear
 
-    return new Date(Number(dateOfBirthYear), Number(idNumber.substring(2, 4)) - 1, Number(idNumber.substring(4, 6)))
+    return new Date(`${dateOfBirthYear}-${idNumber.substring(2, 4)}-${idNumber.substring(4, 6)}T00:00:00`)
   }
 
   static determineAge(idNumber: string): number {

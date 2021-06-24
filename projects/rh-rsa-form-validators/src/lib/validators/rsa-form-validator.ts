@@ -30,10 +30,22 @@ export class RsaFormValidator {
   ): ValidatorFn {
     const validatorFn = (control: AbstractControl): ValidationErrors | null => {
       const idNumber = control.get(idNumberControlName) && control.get(idNumberControlName).value
-      const dateOfBirth = control.get(dateOfBirthControlName) && control.get(dateOfBirthControlName).value
       const gender = control.get(genderControlName) && control.get(genderControlName).value
       const isCitizen = control.get(isCitizenControlName) && control.get(isCitizenControlName).value
-      const age = control.get(ageControlName) && control.get(ageControlName).value
+      const age = control.get(ageControlName) && Number(control.get(ageControlName).value)
+      let dateOfBirth = control.get(dateOfBirthControlName) && control.get(dateOfBirthControlName).value
+      if (dateOfBirth && !(dateOfBirth instanceof Date)) {
+        const tempDate = new Date(dateOfBirth)
+        dateOfBirth = new Date(Date.UTC(
+          tempDate.getFullYear(),
+          tempDate.getMonth(),
+          tempDate.getDate(),
+          0,
+          0,
+          0,
+          0
+        ))
+      }
 
       if (idNumber.trim() && !RsaIdValidationLogic.validateIdNumber(idNumber, { dateOfBirth, gender, isCitizen, age }))
         return { rsaIdNumber: true }

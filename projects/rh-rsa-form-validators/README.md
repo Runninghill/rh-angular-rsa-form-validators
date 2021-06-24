@@ -18,12 +18,14 @@ If you plan on contributing to the package please read the contributor readme.
 
 # Usage💡
 
-To begin validating your South African specific form fields, start by importing
+To begin validating your South African specific forms and form controls, start by **importing**
 the _RsaFormValidators_ class.
 
 ```Javascript
 import { RsaFormValidator } from 'rh-angular-rsa-form-validators'
 ```
+
+For form control validators:
 
 Add the appropriate validator to your form control(s).
 
@@ -34,6 +36,22 @@ this.form = this.formBuilder.group({
     mobileNumber: ['', [Validators.required, RsaFormValidator.phoneNumber(false, true)]],
     workNumber: ['']
 })
+
+// After the form is already created
+this.form.controls['workNumber'].setValidators([RsaFormValidators.phoneNumber(false, true)])
+```
+
+For form validators:
+
+Add the appropriate validator to your form.
+
+```Javascript
+// When creating your form
+this.form = this.formBuilder.group({
+    idNumber: [''],
+    gender: [''],
+    address: ['']
+}, RsaFormValidator.idNumberForm('idNumber', null, 'gender'))
 
 // After the form is already created
 this.form.controls['workNumber'].setValidators([RsaFormValidators.phoneNumber(false, true)])
@@ -60,9 +78,11 @@ Contains form control validators used to validate South African specific form fi
 
 #### Methods
 
-##### phoneNumber(allowCountryCode, allowSpaces)
+##### phoneNumber
 
 Returns a validator which determines if a form control is a valid South African phone number.
+
+Error on form errors object: `rsaPhoneNumber: true`
 
 Parameters
 
@@ -70,3 +90,29 @@ Parameters
 |----|----|-----------|-------|
 |allowCountryCode|boolean|determines if the phone number is allowed to contain the South African country code (+27)|true|
 |allowSpaces|boolean|determines if a phone number is allowed to contain spaces|true|
+
+
+##### idNumber
+
+Returns a validator which determines if a form control is a valid South African ID number.
+
+Error on form errors object: `rsaIdNumber: true`
+
+##### idNumberForm
+
+Returns a validator which determines if a form contains a valid South African ID number.
+
+You can optionally provide the name of certain inputs to compare the information on the
+ID number (such as gender, date of birth etc.) to the values of the inputs on the form.
+
+Error on form errors object: `rsaIdNumber: true`
+
+Parameters
+
+|Name|Type|Description|Control Value Type|Required|
+|----|----|-----------|------------------|--------|
+|idNumberControlName|string|name of the ID number control on the form|string|true
+|dateOfBirthControlName|string|name of the date of birth control on the form|date|false
+|genderControlName|string|name of the gender control on the form|string|false
+|isCitizenControlName|string|name of the is South African citizen control on the form|boolean|false
+|ageControlName|string|name of the age control on the form|number|false

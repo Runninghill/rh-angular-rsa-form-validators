@@ -83,12 +83,32 @@ describe('Test RsaFormValidator', () => {
       expect(errors).toBeNull()
     })
 
+    test('should not require the given id number holder info controls to have values', () => {
+      const errors = testValidatorOnForm(
+        [
+          { name: 'idNumber', value: '0102044818080' },
+          { name: 'gender', value: '' },
+          { name: 'age', value: '' },
+          { name: 'dateOfBirth', value: new Date('2001/02/04') },
+        ],
+        RsaFormValidator.idNumberForm(
+          'idNumber',
+          'dateOfBirth',
+          'gender',
+          null,
+          'age'
+        )
+      )
+
+      expect(errors).toBeNull()
+    })
+
     describe('should be able to validate an id number against the id number holder\'s date of birth', () => {
       test('should not return any errors if the date of birth in the form matches the id number', () => {
         const errors = testValidatorOnForm(
           [
             { name: 'idNumber', value: '0102044818080' },
-            { name: 'dateOfBirth', value: new Date('2001/02/04') },
+            { name: 'dateOfBirth', value: '2001/02/04' },
           ],
           RsaFormValidator.idNumberForm('idNumber', 'dateOfBirth')
         )
@@ -100,10 +120,22 @@ describe('Test RsaFormValidator', () => {
         const errors = testValidatorOnForm(
           [
             { name: 'idNumber', value: '0102044818080' },
-            { name: 'dateOfBirth', value: new Date('1990/05/14') },
+            { name: 'dateOfBirth', value: '1990/05/14' },
           ],
           RsaFormValidator.idNumberForm('idNumber', 'dateOfBirth')
         )
+
+        expect(errors.rsaIdNumber).toBeTruthy()
+      })
+
+      test('should work with a date of birth in the form from various timezones', () => {
+        sinon.stub()
+
+        const validator = RsaFormValidator.idNumberForm('idNumber', 'dateOfBirth')
+        const formControls = [
+            { name: 'idNumber', value: '0102044818080' },
+            { name: 'dateOfBirth', value: '1990/05/14' },
+        ]
 
         expect(errors.rsaIdNumber).toBeTruthy()
       })

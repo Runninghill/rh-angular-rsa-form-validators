@@ -5,28 +5,28 @@ import * as sinon from 'sinon'
 describe('Test RsaIdValidationLogic', () => {
   describe('Test determineDateOfBirth', () => {
     test('should be able to determine the date of birth on a valid id number', () => {
-      const actualDateOfBirth = new Date('2000/09/13')
+      const actualDateOfBirth = new Date('2000-09-13T00:00:00')
       const determinedDateOfBirth = RsaIdValidationLogic.determineDateOfBirth('0009139967088')
 
       expect(determinedDateOfBirth.getTime()).toEqual(actualDateOfBirth.getTime())
     })
 
     test('should be able to determine the date of birth on a valid id number from before the year 2000', () => {
-      const actualDateOfBirth = new Date('1990/05/02')
-      const determinedDateOfBirth = RsaIdValidationLogic.determineDateOfBirth('9005025586082')
+      const actualDateOfBirth = new Date('1965-06-22T00:00:00')
+      const determinedDateOfBirth = RsaIdValidationLogic.determineDateOfBirth('6506225667088')
 
       expect(determinedDateOfBirth.getTime()).toEqual(actualDateOfBirth.getTime())
     })
 
     test('should be able to determine the date of birth on a valid id number from the year 2000', () => {
-      const actualDateOfBirth = new Date('2000/02/20')
+      const actualDateOfBirth = new Date('2000-02-20T00:00:00')
       const determinedDateOfBirth = RsaIdValidationLogic.determineDateOfBirth('0002205144088')
 
       expect(determinedDateOfBirth.getTime()).toEqual(actualDateOfBirth.getTime())
     })
 
     test('should be able to determine the date of birth on a valid id number from after the year 2000', () => {
-      const actualDateOfBirth = new Date('2009/04/02')
+      const actualDateOfBirth = new Date('2009-04-02T00:00:00')
       const determinedDateOfBirth = RsaIdValidationLogic.determineDateOfBirth('0904026279086')
 
       expect(determinedDateOfBirth.getTime()).toEqual(actualDateOfBirth.getTime())
@@ -35,7 +35,7 @@ describe('Test RsaIdValidationLogic', () => {
 
   describe('Test determineAge', () => {
     let clock
-    const stubbedCurrentDate = new Date('2018/03/30')
+    const stubbedCurrentDate = new Date('2018-03-30T00:00:00')
 
     beforeEach(() => {
       clock = sinon.useFakeTimers(stubbedCurrentDate.getTime())
@@ -143,7 +143,7 @@ describe('Test RsaIdValidationLogic', () => {
 
     describe('with the id number holder\'s age known', () => {
       let clock
-      const stubbedCurrentDate = new Date('2018/03/30')
+      const stubbedCurrentDate = new Date('2018-03-30T00:00:00')
       const knownInfo = { age: 13 }
 
       beforeEach(() => {
@@ -205,7 +205,7 @@ describe('Test RsaIdValidationLogic', () => {
 
     describe('with all id number holder info known', () => {
       let clock
-      const stubbedCurrentDate = new Date('2018/03/30')
+      const stubbedCurrentDate = new Date('2018-03-30T00:00:00')
       const knownInfo = {
         dateOfBirth: new Date('2001/09/15'),
         gender: 'male',

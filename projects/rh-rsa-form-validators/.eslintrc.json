@@ -20,7 +20,7 @@
     "default-case": ["error"],
     "eqeqeq": ["error"],
     "keyword-spacing": ["error"],
-    "max-len": ["error", 120],
+    "max-len": ["error", 125],
     "no-alert": ["error"],
     "no-console": ["error"],
     "no-else-return": ["error"],
