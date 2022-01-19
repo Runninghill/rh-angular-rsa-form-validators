@@ -1,6 +1,6 @@
 {
   "name": "@runninghill/ng-rsa-form-validators",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A set of South African specific validators for Angular forms.",
   "scripts": {
     "lint": "eslint ./ --ext .ts",
@@ -43,7 +43,7 @@
     "southafrica"
   ],
   "author": "Runninghill Software Development",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Runninghill/rh-angular-rsa-form-validators/issues"
   },
